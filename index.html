@@ -9,33 +9,36 @@
 </head>
 
 <body>
-  <header class="header__title">
-    todoList
-  <header/>
-  <div class="container">
-     <div class="container__todoList">
-        <div class="todoList--title">
-           문제1
-        </div>
-        <div class="todoList--detail">
-           문제1 설명
-        </div>
-        
-     </div>
-    <div class="container__todoList">
-        <div class="todoList--title">
-           문제1
-        </div>
-        <div class="todoList--detail">
-           문제1 설명
-        </div>
-        
+  <div class="wrapper">
+    <div class="container__header">
+      TodoList
     </div>
-    <div class="container__todoList">
-        내일 할일2
+    <button type="button"  onclick="location.href='./write_page.html'" class="container__button__write">
+      작성
+    </button>
+    <div class="container">
+      <div class="container__todoList">
+          <div class="todoList--title">
+             문제1
+          </div>
+          <div class="todoList--detail">
+             문제1 설명
+          </div>
+      </div>
+      <div class="container__todoList">
+          <div class="todoList--title">
+             문제1
+          </div>
+          <div class="todoList--detail">
+             문제1 설명
+          </div>
+      </div>
+      <div class="container__todoList">
+          내일 할일2
+      </div>
     </div>
-     
   </div>
+  
   
   <script src="writeDataHtml.js" type="module"></script>
 </body>

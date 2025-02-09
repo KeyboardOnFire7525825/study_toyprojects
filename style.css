@@ -1,9 +1,41 @@
+/*unset*/
 html {
   height: 100%;
   width: 100%;
 }
+button {
+  display: block;
+  border: unset;
+  padding: unset;
+}
+ul{
+  padding: unset;
+}
+li{
+  list-style-type: none;
+}
+textarea{
+  resize:none;
+}
 
-.header__title{
+/*commonStyles*/
+button{
+  background-color: rgb(208, 208, 208);
+  cursor: pointer;
+}
+
+button:hover{
+  background-color: rgb(117, 117, 117);
+}
+
+.button:active{
+  background-color: rgb(77, 77, 77);
+}
+
+
+
+/*style*/
+.container__header{
   text-align: center;
   font-size: 30px;
   background-color: yellow;
@@ -12,14 +44,27 @@ body{
   background-color: red;
 }
 
+.wrapper{
+  padding: 10px;
+  background-color: rgb(255, 255, 255);
+}
+
 .container{
   display: flex;
   gap: 10px;
   flex-direction: column;
-  background-color: white;
+  background-color: rgb(227, 227, 227);
   padding: 10px;
   
 }
+
+.container__button__write{
+  margin: 5px;
+  padding: 5px;
+  margin-left: auto;
+}
+
+
 
 .container__todoList{
   display: flex;
@@ -35,4 +80,24 @@ body{
 }
 .todoList--detail{
   background-color: blue
+}
+
+.form{
+  display: flex;
+  flex-direction: column;
+}
+
+.form li{
+  margin: 0 auto;
+}
+
+.form__input input{
+  display: block;
+  width: 200px;
+}
+
+.form__input textarea{
+  display: block;
+  width: 200px;
+  height: 100px;
 }

@@ -81,6 +81,20 @@ const server = http.createServer(async(req, res) => {
          res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:5500');
          res.writeHead(200, { 'Content-Type': 'application/json'});
          res.end(JSON.stringify(data));
+      } 
+      //Post 요청 처리
+      else if (req.method === "POST" && req.url === "/users"){
+        let body = '';
+        req.on('data', chunk => {
+          body += chunk;
+        });
+        req.on('end', async () => {
+          const newData = JSON.parse(body);
+          await collection.insertOne(newData);
+          res.writeHead(201, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({ mesage: 'Data added successfully'}));
+        })
+
       }
    } catch (error) {
       console.log(`error`);
@@ -92,8 +106,8 @@ const server = http.createServer(async(req, res) => {
 
 
 const userSchema = {
-   name: { type: "string", required: true },
-   age: { type: "number", min: 0 },
+   title: { type: "string", required: true },
+   content: { type: "string", required: true },
    email: { type: "string", unique: true },
    createAt: { type: "date", default: Date.now },
 };
