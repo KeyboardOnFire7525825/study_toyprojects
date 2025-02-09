@@ -59,8 +59,6 @@ async function getUserData() {
       const data = await collection.find().toArray();
 
       console.log(data);
-      return data;
-
       
    } finally {
       await client.close();
@@ -69,7 +67,6 @@ async function getUserData() {
 /*
    open the server 
    /users -> get처리
-
 */
 const server = http.createServer(async(req, res) => {
    
@@ -77,12 +74,11 @@ const server = http.createServer(async(req, res) => {
       await client.connect();
       const db = client.db("TestDBServer");
       const collection = db.collection("users");
-      const dataEx = await collection.find().toArray();
-      console.log(dataEx);
 
       //Get 요청 처리
       if(req.method === "GET" && req.url === "/users"){
          const data = await collection.find().toArray();
+         res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:5500');
          res.writeHead(200, { 'Content-Type': 'application/json'});
          res.end(JSON.stringify(data));
       }
