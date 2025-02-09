@@ -56,22 +56,42 @@ async function getUserData() {
       await client.connect();
       const db = client.db("TestDBServer");
       const collection = db.collection("users");
-      const data = await collection.toArray();
+      const data = await collection.find().toArray();
 
+      console.log(data);
       return data;
+
+      
    } finally {
       await client.close();
    }
 };
+/*
+   open the server 
+   /users -> get처리
 
-const server = http.createServer((req, res) => {
-   if(req.url === '/'){
-      res.writeHead(200, { 'Content-Type': 'text/plain'});
-      res.end('Hello World');
-   } else {
-      res.writeHead(404, { 'Content-Type': 'text/plain'});
-      res.end('Not Found');
+*/
+const server = http.createServer(async(req, res) => {
+   
+   try {
+      await client.connect();
+      const db = client.db("TestDBServer");
+      const collection = db.collection("users");
+      const dataEx = await collection.find().toArray();
+      console.log(dataEx);
+
+      //Get 요청 처리
+      if(req.method === "GET" && req.url === "/users"){
+         const data = await collection.find().toArray();
+         res.writeHead(200, { 'Content-Type': 'application/json'});
+         res.end(JSON.stringify(data));
+      }
+   } catch (error) {
+      console.log(`error`);
+   } finally {
+      await client.close()
    }
+   
 });
 
 
@@ -88,9 +108,11 @@ const newUser = {
    email: "JohnDoe@example.com",
 };
 
+let data = getUserData();
+console.log(data);
+
 const port = 3000;
 server.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });
-
 
